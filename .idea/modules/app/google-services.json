@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "757288335272",
+    "firebase_url": "https://thirsty-crow-1070e.firebaseio.com",
+    "project_id": "thirsty-crow-1070e",
+    "storage_bucket": "thirsty-crow-1070e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757288335272:android:dbb187795f3f15a76e0f9d",
+        "android_client_info": {
+          "package_name": "com.e.thirstycrow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757288335272-2e9han1bbp51dkao4kb0q8tju6bp1u4i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.e.thirstycrow",
+            "certificate_hash": "d02647d3b6187ad812c4e466017826dae4eed8df"
+          }
+        },
+        {
+          "client_id": "757288335272-re4bp2staijtdumo41abhm9niiu3a47k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWUSYPMlgJV-br8aquGKY_ucB6QXtEang"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757288335272-re4bp2staijtdumo41abhm9niiu3a47k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

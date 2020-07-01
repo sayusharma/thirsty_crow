@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/overlayBackground"
+    android:layout_height="match_parent"
+    tools:context=".PrivacyFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:text="Privacy Policy:"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:text="Please take a few moments to read the following policy so that you understand how we treat your information. As we continuosly improve and expand our services, this might change, so please check it periodically."
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:text="Note:"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:text="By using this App, you should agree and bound by terms and conditions of this privacy policy. If you do not agree, please do not use and access our app.\n\nBy mere use of the app, you expressly consent to our use and disclosure of your personal information in acoordance with the privacy policy. This privacy policy is incorporated into and subject to the terms of use."
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:text="1. Collection of personal identification information:"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:text="When you registered our App, you provide us your Name, Email ID, Mobile number and other personal information. We collect and store the personal information provided by you, our primary goal is to provide you safe, efficient, smooth and good experience and to help resolve dispute and troubleshoot problem. This also allows us to provide services that most likely meet your needs. We also use your information to inform you about update on products, price, offer, services, customize user experience.\n
+                \nIf you choose to buy on the App, we collect information about your buying behaviour. This helps us to analyse buying patterns and inmprove user experience.
+                \n\nIf you choose to leave a feedback, we will collect that information as necessary to resolve disputes, provide customer support and troubleshoot problems as permitted by law."
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:text="2. Security Precautions:"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:text="Our App has stringent security measures in place to protect the loss, misuse, and alteration of the information under our control. Whenever you change or access your account information, we offer the use of a secure server. Once your information is in our possession we adhere to strict security guidelines, protecting it against unauthorized access."
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:text="3. Choice/Opt-Out:"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:text="We provide all users with the opportunity to opt-out of receiving non-essential(promotional, marketing-related) communications from us on behalf of our partners, and from us in general, after setting up an account.\n\nIf you want to remove your contact information from all Thirsty Crow lists and newsletters, please contact with us."
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:text="4. Advertisments on Thirsty Crow:"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:text="We use third-party advertising companies to serve ads when you visit our App. These companies may use information (not including your name, email address or telephone number) about your visits to this and other Apps in order to provide advertisments about goods and services of interest of you."
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:text="5. Your Consent:"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:text="By using the App and/or by providing your information you disclose on the App in accordance with this privacy policy, including but not limited to Your consent for sharing your information as per this privacy policy."
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

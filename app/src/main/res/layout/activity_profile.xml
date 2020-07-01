@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/cardViewNotSelected"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layout"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/profileLogo"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/crow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="Thirsty Crow"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textThirtyCrow"
+            android:textSize="30sp"
+            android:layout_below="@id/profileLogo"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/oneLastStepText"
+            android:text="You're one step away from ordering, please add the following details."
+            android:textColor="#000"
+            android:layout_marginLeft="25sp"
+            android:layout_marginRight="25sp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_below="@id/textThirtyCrow"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:id="@+id/firstNameEditText"
+            android:layout_marginLeft="30dp"
+            android:hint="First Name"
+            android:textColor="#000"
+            android:drawablePadding="10dp"
+            android:textColorHint="#9E9898"
+            android:padding="11dp"
+            android:inputType="textPersonName"
+            android:drawableStart="@drawable/ic_baseline_account_circle_24"
+            android:textSize="20sp"
+            android:background="@drawable/login_edittext"
+            android:layout_below="@id/oneLastStepText"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:id="@+id/lastNameEditText"
+            android:layout_marginLeft="30dp"
+            android:hint="Last Name"
+            android:textColor="#000"
+            android:drawablePadding="10dp"
+            android:textColorHint="#9E9898"
+            android:padding="11dp"
+            android:inputType="textPersonName"
+            android:drawableStart="@drawable/ic_baseline_account_circle_24"
+            android:textSize="20sp"
+            android:background="@drawable/login_edittext"
+            android:layout_below="@id/firstNameEditText"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:id="@+id/emailEditText"
+            android:layout_marginLeft="30dp"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:textColor="#000"
+            android:drawablePadding="10dp"
+            android:textColorHint="#9E9898"
+            android:padding="11dp"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            android:textSize="20sp"
+            android:background="@drawable/login_edittext"
+            android:layout_below="@+id/lastNameEditText"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/layout"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/btnSaveDetails"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/login_button"
+            android:padding="8dp"
+            android:text="Save Details"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            tools:layout_editor_absoluteX="0dp" />
+    </RelativeLayout>
+</RelativeLayout>

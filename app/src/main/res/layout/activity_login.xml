@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/cardViewNotSelected"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_above="@+id/btnContinue"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+        <ImageView
+            android:id="@+id/loginLogo"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/crow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="Thirsty Crow"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textThirtyCrow"
+            android:textSize="30sp"
+            android:layout_below="@id/loginLogo"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:id="@+id/layoutEnterPhone"
+            android:layout_width="match_parent"
+            android:layout_below="@id/textThirtyCrow"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:visibility="visible"
+            android:layout_marginRight="30dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:id="@+id/textEnterPhoneNumber"
+                android:text="Tap 'Continue' to get an SMS confirmation to help you use Thirsty Crow. We would like your phone number."/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneEditText"
+                android:hint="Phone Number"
+                android:maxLength="10"
+                android:inputType="phone"
+                android:layout_marginTop="30dp"
+                android:textColor="#000"
+                android:drawablePadding="10dp"
+                android:textColorHint="#9E9898"
+                android:padding="12dp"
+                android:drawableStart="@drawable/ic_baseline_local_phone_24"
+                android:textSize="22sp"
+                android:background="@drawable/login_edittext"
+                android:layout_below="@+id/textEnterPhoneNumber"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/layoutVerify"
+            android:layout_width="match_parent"
+            android:layout_below="@id/textThirtyCrow"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:visibility="invisible"
+            android:layout_marginRight="30dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:id="@+id/textEnterOTP"
+                android:text="Check your SMS messages. We've sent you the OTP."/>
+            <com.chaos.view.PinView
+                android:id="@+id/pinViewOTP"
+                style="@style/PinWidget.PinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:cursorVisible="true"
+                android:inputType="number"
+                android:itemBackground="@drawable/otp_back"
+                android:padding="7dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="22sp"
+                app:cursorColor="#000"
+                app:itemCount="6"
+                app:itemHeight="40dp"
+                app:itemRadius="10dp"
+                app:itemSpacing="3dp"
+                app:itemWidth="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/textEnterOTP"
+                app:viewType="rectangle" />
+            <LinearLayout
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/pinViewOTP"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Didn't get the OTP?  "
+                    android:layout_weight="1"
+                    android:textColor="#000"
+                    />
+                <RelativeLayout
+                    android:layout_width="81dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Resend Now"
+                        android:id="@+id/textResendNow"
+                        android:textColor="@color/colorPrimary"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.75dp"
+                        android:background="@color/colorPrimary"
+                        android:layout_below="@id/textResendNow"
+                        />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/login_button"
+        android:padding="8dp"
+        android:text="Continue"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="28sp"
+        tools:layout_editor_absoluteX="0dp" />
+    <Button
+        android:id="@+id/btnTakeMeIn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/login_button"
+        android:padding="8dp"
+        android:text="Take Me In"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:visibility="invisible"
+        android:textSize="28sp"
+        tools:layout_editor_absoluteX="0dp" />
+
+</RelativeLayout>

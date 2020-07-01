@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/overlayBackground"
+    tools:context=".TermsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:text="By using app service of 'Thirsty Crow', you should read the following terms and conditions and should agree them.\n
+                \n-> Please note that, we are not water manufacturer, we take the water from manufacturers with quality as per standards.\n
+                \n-> We can use your mobile number for providing some offer details as per past activity.\n
+                \n-> Our company can contact you through your mobile number for product quality and service improvements.\n
+                \n-> For Money Refund, contact us with order ID at 'iamthirstycrow@gmail.com'.\n
+                \n-> In case Water Jar order, Customer has to Pay in advance (through online payments).\n
+                \n-> Our terms and conditions are subject to change at any time with any prior notice. To make sure you are aware of the change, please review this terms and conditions periodically.\n
+                \n-> If you do not agree with terms and conditions then please do not use or access 'Thirsty Crow' App."
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

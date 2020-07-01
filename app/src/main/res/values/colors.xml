@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2B74C7</color>
+    <color name="colorPrimaryDark">#59595B</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="cardViewSelected">#D6D3D3</color>
+    <color name="cardViewNotSelected">#F3F1F1</color>
+    <color name="overlayBackground">#EFEEEE</color>
+    <color name="overlayToolbar">#2B74C7</color>
+</resources>

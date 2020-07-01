@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Thirsty Crow\'</string>
+    <string name="don_t_be_thirsty">-Don\'t be thirsty!</string>
+    <string name="title_activity_login2">LoginActivity2</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="rupee">\u20B9</string>
+    <string name="title_activity_dash_navigation">DashNavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="price_jar_included">200</string>
+    <string name="price_jar_not_included">45</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="time">
+        <item>Select Delivery Time</item>
+        <item>9 AM - 12 PM</item>
+        <item>12 PM - 3 PM</item>
+        <item>3 PM - 6 PM</item>
+        <item>6 PM - 9 PM</item>
+    </string-array>
+</resources>
