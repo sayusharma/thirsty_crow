@@ -11,13 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".PaymentError"></activity>
-        <activity android:name=".PaymentSuccess" />
-        <activity android:name=".OrderActivity" />
-        <activity android:name=".DashDrawerActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".PaymentError" android:screenOrientation="portrait"></activity>
+        <activity android:name=".PaymentSuccess" android:screenOrientation="portrait"/>
+        <activity android:name=".OrderActivity" android:screenOrientation="portrait" />
+        <activity android:name=".DashDrawerActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ProfileActivity" android:screenOrientation="portrait" />
+        <activity android:name=".LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

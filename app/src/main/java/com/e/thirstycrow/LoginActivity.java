@@ -1,6 +1,7 @@
 package com.e.thirstycrow;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -68,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(),"Auth is null",Toast.LENGTH_LONG).show();
         }
+
 
         resendNow.setOnClickListener(new View.OnClickListener() {
             @Override
