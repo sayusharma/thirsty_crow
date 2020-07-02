@@ -2,6 +2,7 @@ package com.e.thirstycrow;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -111,9 +112,7 @@ public class OrderFragment extends Fragment {
                         //Toast.makeText(getContext(),"IN3",Toast.LENGTH_SHORT).show();
                         recyclerView.setAdapter(orderAdapter);
                     }
-
         }
-
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
 

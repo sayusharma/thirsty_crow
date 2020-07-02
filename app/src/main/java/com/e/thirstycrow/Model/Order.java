@@ -11,8 +11,9 @@ public class Order {
     private Product productWithout;
     private String total_amount;
     private String status;
+    private String orderid;
     public Order(){}
-    public Order(String first, String phone, String address, String payment_id, String delivery_date, String delivery_time, Product productWith, Product productWithout, String total_amount,String status) {
+    public Order(String first, String phone, String address, String payment_id, String delivery_date, String delivery_time, Product productWith, Product productWithout, String total_amount,String status,String orderid) {
         this.first = first;
         this.phone = phone;
         this.address = address;
@@ -23,7 +24,17 @@ public class Order {
         this.productWithout = productWithout;
         this.total_amount = total_amount;
         this.status = status;
+        this.orderid = orderid;
     }
+
+    public String getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
+    }
+
     public String getFirst() {
         return first;
     }

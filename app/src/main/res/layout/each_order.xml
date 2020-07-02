@@ -179,28 +179,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
-                android:layout_width="wrap_content"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:textSize="20sp"
-                    android:layout_width="wrap_content"
-                    android:text="@string/rupee"
-                    android:textColor="#000"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="200"
-                    android:id="@+id/textAmount"
-                    android:textColor="#000"
-                    android:textSize="20sp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
+
         </RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="24sp"
+                android:layout_width="wrap_content"
+                android:text="@string/rupee"
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="200"
+                android:id="@+id/textAmount"
+                android:textColor="#000"
+                android:textSize="24sp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

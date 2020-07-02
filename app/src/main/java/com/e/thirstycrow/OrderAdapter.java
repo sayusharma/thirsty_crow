@@ -1,9 +1,11 @@
 package com.e.thirstycrow;
 
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,9 +30,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         return new OrderViewHolder(LayoutInflater.from(context).inflate(R.layout.each_order,parent,false));
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
-        holder.orderid.setText(orders.get(position).getPayment_id());
+        holder.orderid.setText(orders.get(position).getOrderid());
         holder.status.setText(orders.get(position).getStatus());
         holder.status.setText(orders.get(position).getStatus());
         holder.date.setText(orders.get(position).getDelivery_date());

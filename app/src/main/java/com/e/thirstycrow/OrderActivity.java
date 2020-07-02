@@ -295,7 +295,6 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
     public void onPaymentSuccess(String s) {
         Product with = new Product(textQtyWithCan.getText().toString(),String.valueOf(200*Integer.parseInt(textQtyWithCan.getText().toString())));
         Product without = new Product(textQtyWithoutCan.getText().toString(),String.valueOf(45*Integer.parseInt(textQtyWithoutCan.getText().toString())));
-        final Order newOrder = new Order(Common.currentUser.getFirst(),SaveSharedPreference.getUserName(this),currentAddress,s,del_date,del_time,with,without,amount,"Pending");
         final DatabaseReference reference = firebaseDatabase.getReference().child("requests");
         final ArrayList<String> orderIDList = new ArrayList<>();
         orderIDList.add(String.valueOf(Calendar.getInstance().getTimeInMillis()));
@@ -312,6 +311,20 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
 
             }
         });
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(orderIDList.get(orderIDList.size()-1)).exists()){
+                    orderIDList.add(String.valueOf(Calendar.getInstance().getTimeInMillis()));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        final Order newOrder = new Order(Common.currentUser.getFirst(),SaveSharedPreference.getUserName(this),currentAddress,s,del_date,del_time,with,without,amount,"Pending",orderIDList.get(orderIDList.size()-1));
         final DatabaseReference reference1 = firebaseDatabase.getReference().child("users").child(SaveSharedPreference.getUserName(OrderActivity.this));
         reference.child(orderIDList.get(orderIDList.size()-1)).setValue(newOrder)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
