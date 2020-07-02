@@ -90,8 +90,8 @@ public class OrderFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         arrayList = new ArrayList<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(SaveSharedPreference.getUserName(getContext())).child("orders");
-        Query query = databaseReference.orderByKey();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("requests");
+        Query query = databaseReference.orderByChild("phone").equalTo(SaveSharedPreference.getUserName(getContext()));
         query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

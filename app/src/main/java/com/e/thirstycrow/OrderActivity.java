@@ -76,7 +76,7 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
                 if (dataSnapshot.child("address").exists()){
                     hasAddress=true;
                     prevAddress = (String) dataSnapshot.child("address").getValue();
-                    Toast.makeText(getApplicationContext(),""+prevAddress,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),""+prevAddress,Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -296,11 +296,28 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
         Product with = new Product(textQtyWithCan.getText().toString(),String.valueOf(200*Integer.parseInt(textQtyWithCan.getText().toString())));
         Product without = new Product(textQtyWithoutCan.getText().toString(),String.valueOf(45*Integer.parseInt(textQtyWithoutCan.getText().toString())));
         final Order newOrder = new Order(Common.currentUser.getFirst(),SaveSharedPreference.getUserName(this),currentAddress,s,del_date,del_time,with,without,amount,"Pending");
-        table_user.child("orders").child(String.valueOf(Calendar.getInstance().getTimeInMillis())).setValue(newOrder)
+        final DatabaseReference reference = firebaseDatabase.getReference().child("requests");
+        final ArrayList<String> orderIDList = new ArrayList<>();
+        orderIDList.add(String.valueOf(Calendar.getInstance().getTimeInMillis()));
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(orderIDList.get(orderIDList.size()-1)).exists()){
+                    orderIDList.add(String.valueOf(Calendar.getInstance().getTimeInMillis()));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        final DatabaseReference reference1 = firebaseDatabase.getReference().child("users").child(SaveSharedPreference.getUserName(OrderActivity.this));
+        reference.child(orderIDList.get(orderIDList.size()-1)).setValue(newOrder)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        table_user.child("address").setValue(currentAddress);
+                        reference1.child("address").setValue(currentAddress);
                         Intent intent = new Intent(getApplicationContext(),PaymentSuccess.class);
                         startActivity(intent);
                         finish();
@@ -312,6 +329,6 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
     @Override
     public void onPaymentError(int i, String s) {
 
-
     }
+
 }

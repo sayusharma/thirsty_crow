@@ -24,7 +24,6 @@ public class Order {
         this.total_amount = total_amount;
         this.status = status;
     }
-
     public String getFirst() {
         return first;
     }
