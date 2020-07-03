@@ -295,7 +295,7 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
     public void onPaymentSuccess(String s) {
         Product with = new Product(textQtyWithCan.getText().toString(),String.valueOf(200*Integer.parseInt(textQtyWithCan.getText().toString())));
         Product without = new Product(textQtyWithoutCan.getText().toString(),String.valueOf(45*Integer.parseInt(textQtyWithoutCan.getText().toString())));
-        final DatabaseReference reference = firebaseDatabase.getReference().child("requests");
+        final DatabaseReference reference = firebaseDatabase.getReference().child("requests").child("pending");
         final ArrayList<String> orderIDList = new ArrayList<>();
         orderIDList.add(String.valueOf(Calendar.getInstance().getTimeInMillis()));
         reference.addValueEventListener(new ValueEventListener() {

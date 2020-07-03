@@ -37,39 +37,45 @@
             android:text="Purified Drinking Water CAN"
             android:textColor="#3E3D3D"
             android:textSize="22sp" />
-        <RadioGroup
+        <LinearLayout
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:orientation="horizontal"
             android:layout_marginLeft="25dp"
             android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:id="@+id/radioWithoutCan"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorPrimary"
                 android:background="@drawable/radio_button_left_selector"
-                android:button="@android:color/transparent"
                 android:checked="true"
                 android:gravity="center"
-                android:padding="10dp"
-                android:text="Rs.45 (CAN excluded)"
-                android:textColor="#fff" />
-            <androidx.appcompat.widget.AppCompatRadioButton
+                >
+                <TextView
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:text="Rs.45 (CAN excluded)"
+                    android:textColor="#fff"
+                    android:layout_height="wrap_content"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:textColor="#000"
-                android:id="@+id/radioWithCan"
-                android:background="@drawable/radio_button_right_selector"
-                android:checked="false"
-                android:padding="10dp"
-                android:button="@android:color/transparent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                app:cardBackgroundColor="@color/White"
+                android:background="@drawable/radio_button_left_selector"
+                android:checked="true"
                 android:gravity="center"
-                android:text="Rs.200 (CAN included)"
-                android:layout_height="40dp"
-                />
-        </RadioGroup>
+                >
+                <TextView
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:text="Rs.200 (CAN included)"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
