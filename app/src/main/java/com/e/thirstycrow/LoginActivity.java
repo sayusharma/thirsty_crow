@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -33,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -42,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private PinView otp;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private Button btnContinue,btnTakemein;
+    private FirebaseAnalytics firebaseAnalytics;
     private String number;
     private boolean firstTime;
     private TextView resendNow;
@@ -56,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         send = findViewById(R.id.layoutEnterPhone);
         verify = findViewById(R.id.layoutVerify);
         otp = findViewById(R.id.pinViewOTP);
@@ -206,11 +210,20 @@ public class LoginActivity extends AppCompatActivity {
                             //Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
                             SaveSharedPreference.setUserName(LoginActivity.this,user.getPhoneNumber());
+                            Bundle bundleFirst = new Bundle();
+                            Bundle bundleNotFirst = new Bundle();
                             if(firstTime){
+                                bundleFirst.putString("User",user.getPhoneNumber());
+                                bundleFirst.putString("DateTime", Calendar.getInstance().getTime().toString());
+                                bundleFirst.putString("FirstTime","Yes");
+                                firebaseAnalytics.logEvent("Login",bundleFirst);
                                 startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                                 finish();
                             }else {
-
+                                bundleNotFirst.putString("User",user.getPhoneNumber());
+                                bundleNotFirst.putString("DateTime", Calendar.getInstance().getTime().toString());
+                                bundleNotFirst.putString("FirstTime","No");
+                                firebaseAnalytics.logEvent("Login",bundleNotFirst);
                                 startActivity(new Intent(LoginActivity.this, DashDrawerActivity.class));
                                 finish();
                                 // ...

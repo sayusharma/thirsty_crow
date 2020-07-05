@@ -9,7 +9,10 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LogoutFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private Button logout;
+    private FirebaseAnalytics firebaseAnalytics;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,12 +68,17 @@ public class LogoutFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_logout, container, false);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
         logout = view.findViewById(R.id.btnLogout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firebaseAuth = FirebaseAuth.getInstance();
                 firebaseAuth.signOut();
+                Bundle bundleFirst = new Bundle();
+                bundleFirst.putString("User",SaveSharedPreference.getUserName(getContext()));
+                bundleFirst.putString("DateTime", Calendar.getInstance().getTime().toString());
+                firebaseAnalytics.logEvent("Logout",bundleFirst);
                 SaveSharedPreference.clearPreference(getContext());
                 Intent intent = new Intent(getContext(),LoginActivity.class);
                 startActivity(intent);

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.e.thirstycrow.Common.Common;
 import com.e.thirstycrow.Model.Order;
 import com.e.thirstycrow.Model.Product;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +43,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import static com.e.thirstycrow.R.drawable.ic_baseline_check_box_24;
@@ -52,7 +55,9 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
     private TextView textQtyWithoutCan;
     private Spinner selectTimeSpinner;
     private RelativeLayout selectDateLay;
+    private Context context;
     private TextView selectDateText;
+    private FirebaseAnalytics firebaseAnalytics;
     private Button btnPayNow;
     private TextView instantlyText,sameAsPrevAddress;
     private FirebaseDatabase firebaseDatabase;
@@ -67,7 +72,9 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+        context = this;
         Checkout.preload(OrderActivity.this);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         table_user = firebaseDatabase.getReference().child("users").child(SaveSharedPreference.getUserName(OrderActivity.this));
         table_user.addValueEventListener(new ValueEventListener() {
@@ -148,7 +155,8 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
                 DatePickerDialog datePickerDialog = new DatePickerDialog(OrderActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                       selectDateText.setText(i2+"/"+(i1+1)+"/"+i);
+                        java.sql.Date date1 = new java.sql.Date(i-1900,i1,i2);
+                        selectDateText.setText(date1.toString());
                        if (i1==month && i2==day){
                            instantlyText.setVisibility(View.VISIBLE);
                            selectTimeSpinner.setVisibility(View.INVISIBLE);
@@ -293,9 +301,10 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
 
     @Override
     public void onPaymentSuccess(String s) {
-        Product with = new Product(textQtyWithCan.getText().toString(),String.valueOf(200*Integer.parseInt(textQtyWithCan.getText().toString())));
-        Product without = new Product(textQtyWithoutCan.getText().toString(),String.valueOf(45*Integer.parseInt(textQtyWithoutCan.getText().toString())));
-        final DatabaseReference reference = firebaseDatabase.getReference().child("requests").child("pending");
+        final String payId = s;
+        final Product with = new Product(textQtyWithCan.getText().toString(),String.valueOf(200*Integer.parseInt(textQtyWithCan.getText().toString())));
+        final Product without = new Product(textQtyWithoutCan.getText().toString(),String.valueOf(45*Integer.parseInt(textQtyWithoutCan.getText().toString())));
+        final DatabaseReference reference = firebaseDatabase.getReference().child("requests");
         final ArrayList<String> orderIDList = new ArrayList<>();
         orderIDList.add(String.valueOf(Calendar.getInstance().getTimeInMillis()));
         reference.addValueEventListener(new ValueEventListener() {
@@ -324,13 +333,26 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
 
             }
         });
-        final Order newOrder = new Order(Common.currentUser.getFirst(),SaveSharedPreference.getUserName(this),currentAddress,s,del_date,del_time,with,without,amount,"Pending",orderIDList.get(orderIDList.size()-1));
+        final Order newOrder = new Order(Common.currentUser.getFirst(),SaveSharedPreference.getUserName(this),currentAddress,s,del_date,del_time,with,without,amount,"pending",orderIDList.get(orderIDList.size()-1));
         final DatabaseReference reference1 = firebaseDatabase.getReference().child("users").child(SaveSharedPreference.getUserName(OrderActivity.this));
         reference.child(orderIDList.get(orderIDList.size()-1)).setValue(newOrder)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         reference1.child("address").setValue(currentAddress);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("User",SaveSharedPreference.getUserName(context));
+                        bundle.putString("Name",Common.currentUser.getFirst());
+                        bundle.putString("DateTime",Calendar.getInstance().getTime().toString());
+                        bundle.putString("OrderID",orderIDList.get(orderIDList.size()-1));
+                        bundle.putString("PaymentID",payId);
+                        bundle.putString("TotalAmount",amount);
+                        bundle.putString("Address",currentAddress);
+                        bundle.putString("DeliveryDate",del_date);
+                        bundle.putString("DeliveryTime",del_time);
+                        bundle.putString("QtyWithCan",with.getQty());
+                        bundle.putString("QtyWithoutCan",without.getQty());
+                        firebaseAnalytics.logEvent("OrderedSuccess",bundle);
                         Intent intent = new Intent(getApplicationContext(),PaymentSuccess.class);
                         startActivity(intent);
                         finish();
@@ -341,6 +363,14 @@ public class OrderActivity extends AppCompatActivity implements PaymentResultLis
 
     @Override
     public void onPaymentError(int i, String s) {
+        Bundle bundle = new Bundle();
+        bundle.putString("User",SaveSharedPreference.getUserName(context));
+        bundle.putString("DateTime",Calendar.getInstance().getTime().toString());
+        bundle.putString("ErrorCode",String.valueOf(i));
+        bundle.putString("PaymentID",s);
+        firebaseAnalytics.logEvent("OrderFailed",bundle);
+        startActivity(new Intent(getApplicationContext(),PaymentError.class));
+        finish();
 
     }
 

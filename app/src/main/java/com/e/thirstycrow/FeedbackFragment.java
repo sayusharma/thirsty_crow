@@ -14,10 +14,12 @@ import androidx.fragment.app.Fragment;
 import com.e.thirstycrow.Common.Common;
 import com.e.thirstycrow.Model.Feedback;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +30,7 @@ public class FeedbackFragment extends Fragment {
     private EditText subject,description;
     private Button btnSubmitCom;
     private FirebaseDatabase firebaseDatabase;
+    private FirebaseAnalytics firebaseAnalytics;
     private DatabaseReference databaseReference;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,8 +80,9 @@ public class FeedbackFragment extends Fragment {
         subject = view.findViewById(R.id.editTextSubject);
         btnSubmitCom = view.findViewById(R.id.btnSubmitComplaint);
         description = view.findViewById(R.id.editTextDescription);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("complaints");
+        databaseReference = firebaseDatabase.getReference().child("complaints").child("pending");
         btnSubmitCom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,12 +94,19 @@ public class FeedbackFragment extends Fragment {
                         Toast.makeText(getContext(),"DESCRIPTION CANNOT BE EMPTY",Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Feedback feedback = new Feedback(subject.getText().toString(), SaveSharedPreference.getUserName(getContext()),Common.currentUser.getFirst(),description.getText().toString());
-                        databaseReference.child(String.valueOf(Calendar.getInstance().getTimeInMillis())).setValue(feedback).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        String id = String.valueOf(Calendar.getInstance().getTimeInMillis());
+                        Feedback feedback = new Feedback(subject.getText().toString(), SaveSharedPreference.getUserName(getContext()),Common.currentUser.getFirst(),description.getText().toString(),id);
+                        databaseReference.child(id).setValue(feedback).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 description.setText("");
                                 subject.setText("");
+                                Bundle bundle = new Bundle();
+                                bundle.putString("User",SaveSharedPreference.getUserName(getContext()));
+                                bundle.putString("DateTime",Calendar.getInstance().getTime().toString());
+                                bundle.putString("Subject",subject.getText().toString());
+                                bundle.putString("Description",description.getText().toString());
+                                firebaseAnalytics.logEvent("FeedbackComplaint",bundle);
                                 Toast.makeText(getContext(),"COMPLAINT REGISTERED SUCCESSFULLY",Toast.LENGTH_LONG).show();
                             }
                         });

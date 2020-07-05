@@ -1,13 +1,22 @@
 package com.e.thirstycrow.Model;
 
 public class Feedback {
-    private String subject,phone,name,description;
+    private String subject,phone,name,description,complaintid;
     public Feedback(){}
-    public Feedback(String subject, String phone, String name, String description) {
+    public Feedback(String subject, String phone, String name, String description,String complaintid) {
         this.subject = subject;
         this.phone = phone;
         this.name = name;
         this.description = description;
+        this.complaintid = complaintid;
+    }
+
+    public String getComplaintid() {
+        return complaintid;
+    }
+
+    public void setComplaintid(String complaintid) {
+        this.complaintid = complaintid;
     }
 
     public String getSubject() {

@@ -14,17 +14,20 @@
             android:orientation="vertical"
             android:layout_height="match_parent">
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             app:cardCornerRadius="10dp"
             app:cardElevation="20dp"
+            android:layout_gravity="center"
             app:cardUseCompatPadding="true"
             app:cardBackgroundColor="@color/White"
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_gravity="center"
-                android:layout_width="250dp"
+                android:layout_width="220dp"
                 android:src="@drawable/water"
-                android:layout_height="250dp"/>
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="220dp"/>
         </com.google.android.material.card.MaterialCardView>
         <TextView
             android:id="@+id/textPurified"
@@ -38,10 +41,10 @@
             android:textColor="#3E3D3D"
             android:textSize="22sp" />
         <LinearLayout
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="25dp"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content">
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -78,7 +81,7 @@
         </LinearLayout>
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             app:cardElevation="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"

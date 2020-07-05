@@ -38,6 +38,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
     compile 'com.github.shrikanth7698:Custom-Navigation-Drawer:v0.0.1'
+    //noinspection GradleCompatible
+    implementation "com.android.support:support-compat:28.0.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.navigation:navigation-fragment:2.1.0'
     implementation 'androidx.navigation:navigation-ui:2.1.0'

@@ -20,7 +20,9 @@ import com.e.thirstycrow.Model.User;
 import com.e.thirstycrow.OrderFragment;
 import com.e.thirstycrow.PrivacyFragment;
 import com.e.thirstycrow.R;
+import com.e.thirstycrow.Service.ListenOrder;
 import com.e.thirstycrow.TermsFragment;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,12 +32,14 @@ import com.shrikanthravi.customnavigationdrawer2.data.MenuItem;
 import com.shrikanthravi.customnavigationdrawer2.widget.SNavigationDrawer;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DashDrawerActivity extends AppCompatActivity {
     SNavigationDrawer sNavigationDrawer;
     private String userPhone;
     Class fragmentClass;
+    private FirebaseAnalytics firebaseAnalytics;
     private AppCompatRadioButton withBtn,withoutBtn;
     public static Fragment fragment;
     private FirebaseDatabase firebaseDatabase;
@@ -47,6 +51,7 @@ public class DashDrawerActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         userPhone = SaveSharedPreference.getUserName(DashDrawerActivity.this);
         table_user = firebaseDatabase.getReference("users");
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         table_user.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -91,8 +96,6 @@ public class DashDrawerActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.frameLayout, fragment).commit();
         }
-
-
 
         //Listener to handle the menu item click. It returns the position of the menu item clicked. Based on that you can switch between the fragments.
 
@@ -177,6 +180,10 @@ public class DashDrawerActivity extends AppCompatActivity {
         });
     }
     public void onOrderNowPressed(View view){
+        Bundle bundle = new Bundle();
+        bundle.putString("User",SaveSharedPreference.getUserName(this));
+        bundle.putString("DateTime", Calendar.getInstance().getTime().toString());
+        firebaseAnalytics.logEvent("OrderNowPressed",bundle);
         startActivity(new Intent(DashDrawerActivity.this,OrderActivity.class));
     }
 }
